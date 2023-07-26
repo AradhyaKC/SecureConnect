@@ -6,12 +6,15 @@ var logger = require('morgan');
 require('dotenv').config();
 const mongoose=require('mongoose');
 const secureConnect=require('./secureConnect');
+const expressip = require('express-ip');
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users').router;
 var portsRouter=require("./routes/ports").router;
 var app = express();
+
+app.use(expressip().getIpInfoMiddleware);
 
 mongoose.connect(process.env.MONGOOSE_CONNECTION_STRING,{useNewUrlParser:true, useUnifiedTopology:true,dbName:"SecureConnect"});
 const db = mongoose.connection;

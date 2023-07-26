@@ -6,7 +6,7 @@ const portSchema=new Schema({
 });
 
 const Port=mongoose.model('Port',portSchema);
-const getAllPorts=async()=>{
+const getAllPorts=async function(){
     return (await Port.find({})).map((ele)=>{
         return ele.port;
     });
